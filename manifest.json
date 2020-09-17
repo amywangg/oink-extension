@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "Oink",
+  "description": "Chrome extension for Oink application",
+  "version": "1.0.0",
+  "icons": {"128":"oink-icon.jpeg"},
+  "browser_action": {
+    "default_icon": "oink-icon.jpeg",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["activeTab"]
+}

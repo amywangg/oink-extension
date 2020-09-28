@@ -1,12 +1,21 @@
 {
-  "manifest_version": 2,
   "name": "Oink",
+  "manifest_version": 2,
+
   "description": "Chrome extension for Oink application",
   "version": "1.0.0",
-  "icons": {"128":"oink-icon.jpeg"},
+  "background": {
+    "scripts": ["./background.js"]
+  },
+  "icons": {
+    "16": "./oink-icon.png",
+    "32": "./oink-icon.png",
+    "48": "./oink-icon.png",
+    "128": "./oink-icon.png"
+  },
   "browser_action": {
-    "default_icon": "oink-icon.jpeg",
+    "default_icon": "oink-icon.png",
     "default_popup": "popup.html"
   },
-  "permissions": ["activeTab"]
+  "permissions": ["activeTab", "tabs", "https://www.amazon.ca/*"]
 }

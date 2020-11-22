@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "Oink",
+  "version": "0.1",
+  "description": "Oink budgeting app",
+  "permissions": ["storage","activeTab", "tabs", "https://www.amazon.ca/*"],
+
+  "background": {
+    "scripts": ["static/js/background.js"]
+  },
+  "content_scripts": [
+    {
+      "js": ["static/js/content.js"],
+      "matches": ["https://www.amazon.ca/*"]
+    }
+  ],
+  "externally_connectable":{
+    "matches":["*://localhost/*","https://oink-dashboard.herokuapp.com/*"]
+  },
+  "icons": {
+    "16": "oink-icon.png",
+    "32": "oink-icon.png",
+    "48": "oink-icon.png",
+    "128": "oink-icon.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "oink-icon.png"
+    },
+    "default_title": "Oink",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

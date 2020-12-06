@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "REACT_APP_API_URL=http://localhost:5000 react-app-rewired build",
+    "build": "REACT_APP_API_URL=https://oink-backend.herokuapp.com react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },

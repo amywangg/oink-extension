@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { CircularProgress } from "@material-ui/core";
 
-const unAuthed = () => {
+const UnAuthed = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
   return (
     <div>
-      <h1 style={{color: "#FF8FB3"}}>User is not authenticated</h1>
-      <a href="https://oink-dashboard.herokuapp.com/">
-      <p style={{color: "#FF8FB3"}}>Sign in with Dashboard</p>
-      </a>
+      {isLoading ? (
+        <div style={{ marginTop: 70, width: "100%", alignContent: "center" }}>
+          <CircularProgress color="secondary" />
+        </div>
+      ) : (
+        <div>
+          <h1 style={{ color: "#FF8FB3" }}>User is not authenticated</h1>
+        </div>
+      )}
     </div>
   );
 };
 
-export default unAuthed;
+export default UnAuthed;

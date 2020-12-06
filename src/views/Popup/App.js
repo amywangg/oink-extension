@@ -1,34 +1,79 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-// import { AppHeader } from "@material-ui/core";
-import { auth, authFailed, authSuccess } from "../../redux/actions";
-import Oink from "./oink";
-import unAuthed from "./unAuthed";
+import {
+  AppBar,
+  Button,
+  Divider,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
+import { auth } from "../../redux/actions";
+import Oink from "./Oink";
+import UnAuthed from "./UnAuthed";
 import "./App.css";
 import { checkAuth } from "../../redux/api";
+import oinkIcon2 from "./oink-icon-2.png";
 
 export function App({ storeUser }) {
-  let user = checkAuth();
-  if (user !== null) {
-    storeUser(user);
-  }
+  const [user, setUser] = useState(null);
 
-  // const { user } = this.props;
-  const View = user === null ? Oink : unAuthed;
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(1.5),
+    },
+  }));
+  const classes = useStyles();
+
+  useEffect(() => {
+    setTimeout(async () => {
+      let temp = await checkAuth();
+      if (temp !== null) {
+        await setUser(temp);
+        // store user in redux
+        await storeUser(temp);
+      }
+    }, 1000);
+  }, []);
 
   return (
     <div className="App">
-      {/* <AppHeader as="h3" attached="top" textAlign="center" inverted color="teal">
-          Oink
-        </AppHeader> */}
+      <AppBar position="static" color="white" elevation={0}>
+        <Toolbar>
+          <img
+            className={classes.menuButton}
+            width={30}
+            height={30}
+            alt="oinkicon"
+            src={oinkIcon2}
+          />
+          <Typography variant="h6" color="secondary">
+            Oink
+          </Typography>
+          <div style={{ position: "absolute", marginRight: 3, right: 6 }}>
+            <Button
+              color="inherit"
+              onClick={() => {
+                window.close();
+              }}
+            >
+              x
+            </Button>
+          </div>
+        </Toolbar>
+        <Divider />
+      </AppBar>
       <div className="App-view">
-        <View user={user} />
+        {user === null ? <UnAuthed /> : <Oink user={user} />}
       </div>
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {};
 };
 

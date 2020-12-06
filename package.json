@@ -5,7 +5,9 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "axios": "^0.21.0",
+    "fontsource-roboto": "^3.0.3",
     "react": "^17.0.1",
     "react-app-rewired": "^2.0",
     "react-dom": "^17.0.1",
@@ -16,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-app-rewired build",
+    "build": "REACT_APP_API_URL=http://localhost:5000 react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },

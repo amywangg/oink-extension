@@ -4,7 +4,7 @@ chrome.tabs.onActivated.addListener((tab) => {
   chrome.tabs.get(tab.tabId, (current_tab_info) => {
     //   if user is on amazon page then inject script
     if (/^https:\/\/www\.amazon/.test(current_tab_info.url)) {
-      chrome.tabs.executeScript(null, { file: "./index.js" }, () =>
+      chrome.tabs.executeScript(null, { file: "../Popup/App.js" }, () =>
         console.log("injected")
       ); //inject script to foreground
     }
